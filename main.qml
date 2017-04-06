@@ -12,5 +12,6 @@ Window {
         mouseArea.onClicked: {
             console.log(qsTr('Clicked on background. Text: "' + textEdit.text + '"'))
         }
+        //some comment
     }
 }

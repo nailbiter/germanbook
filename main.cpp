@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
         std::cout << std::endl;
     }
 
-    if(!false)
+    if(!true)
     {
         std::cout << "tesime"<<std::endl;
         QMediaPlayer* player = new QMediaPlayer;

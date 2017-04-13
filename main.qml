@@ -65,7 +65,7 @@ Window {
 
         Audio{
             id: playMusic
-            source: "../germanbook/hungerkunstler/sound1.wav"
+            source: "hungerkunstler/sound1.mp3"
         }
         MouseArea {
             id: playArea

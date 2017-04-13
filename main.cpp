@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QDir>
 #include <iostream>
+#include <QMediaPlayer>
 
 int main(int argc, char *argv[])
 {
@@ -22,11 +23,14 @@ int main(int argc, char *argv[])
                                                 .arg(fileInfo.fileName()));
         std::cout << std::endl;
     }
-    return 0;
 
-    //return app.exec();
+    QMediaPlayer* player = new QMediaPlayer;
+    player->setMedia(QUrl::fromLocalFile("../germanbook/hungerkunstler/sound1.mp3"));
+    player->setVolume(50);
+    player->play();
+
+    std::cout << "tesime"<<std::endl;
+    //return 0;
+
+    return app.exec();
 }
-/*QMediaPlayer* player = new QMediaPlayer;
-player->setMedia(QUrl::fromLocalFile("/Users/me/Music/coolsong.mp3"));
-player->setVolume(50);
-player->play();*/

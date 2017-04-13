@@ -24,12 +24,12 @@ int main(int argc, char *argv[])
         std::cout << std::endl;
     }
 
-    QMediaPlayer* player = new QMediaPlayer;
+    /*QMediaPlayer* player = new QMediaPlayer;
     player->setMedia(QUrl::fromLocalFile("../germanbook/hungerkunstler/sound1.mp3"));
     player->setVolume(50);
     player->play();
 
-    std::cout << "tesime"<<std::endl;
+    std::cout << "tesime"<<std::endl;*/
     //return 0;
 
     return app.exec();

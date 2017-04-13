@@ -22,7 +22,7 @@ import QtMultimedia 5.6
     }
 }*/
 
-Window {
+/*Window {
     visible: true
     width: 640
     height: 480
@@ -35,4 +35,42 @@ Window {
         }
         //some comment
     }
+}*/
+
+/*Text {
+    text: "Click Me!";
+    font.pointSize: 24;
+    width: 150; height: 50;
+
+    MediaPlayer {
+        id: playMusic
+        source: "../germanbook/hungerkunstler/sound1.mp3"
+    }
+    MouseArea {
+        id: playArea
+        anchors.fill: parent
+        onPressed:  { playMusic.play() }
+    }
+}*/
+Window {
+    visible: true
+    width: 640
+    height: 480
+    title: qsTr("Hello World")
+
+Item {
+    width: 340
+    height: 360
+
+    Audio {
+        id: playMusic
+        source: "../germanbook/hungerkunstler/sound1.mp3"
+    }
+
+    MouseArea {
+        id: playArea
+        anchors.fill: parent
+        onPressed:  { playMusic.play() }
+    }
+}
 }

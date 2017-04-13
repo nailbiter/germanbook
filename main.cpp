@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
-    QDir dir("../germanbook/hungerkunstler");
+    QDir dir("./hungerkunstler");
     dir.setFilter(QDir::Files | QDir::Hidden | QDir::NoSymLinks);
     dir.setSorting(QDir::Size | QDir::Reversed);
 
@@ -24,13 +24,14 @@ int main(int argc, char *argv[])
         std::cout << std::endl;
     }
 
-    /*QMediaPlayer* player = new QMediaPlayer;
-    player->setMedia(QUrl::fromLocalFile("../germanbook/hungerkunstler/sound1.mp3"));
-    player->setVolume(50);
-    player->play();
-
-    std::cout << "tesime"<<std::endl;*/
-    //return 0;
+    if(!false)
+    {
+        std::cout << "tesime"<<std::endl;
+        QMediaPlayer* player = new QMediaPlayer;
+        player->setMedia(QUrl("qrc:/hungerkunstler/sound1.mp3"));
+        player->setVolume(50);
+        player->play();
+    }
 
     return app.exec();
 }

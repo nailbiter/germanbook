@@ -30,4 +30,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    hungerkunstler/sound1.mp3
+    hungerkunstler/sound1.mp3 \
+    hungerkunstler/sound1_copy.mp3

@@ -2,5 +2,10 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
+        <file>hungerkunstler/sound1.mp3</file>
+        <file>hungerkunstler/sound2.mp3</file>
+        <file>hungerkunstler/text1.txt</file>
+        <file>hungerkunstler/text2.txt</file>
+        <file>main.cpp</file>
     </qresource>
 </RCC>

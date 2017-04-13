@@ -58,19 +58,21 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
-Item {
-    width: 340
-    height: 360
+    Text {
+        text: "Click Me!";
+        font.pointSize: 24;
+        width: 150; height: 50;
 
-    Audio {
-        id: playMusic
-        source: "../germanbook/hungerkunstler/sound1.mp3"
-    }
-
-    MouseArea {
-        id: playArea
-        anchors.fill: parent
-        onPressed:  { playMusic.play() }
-    }
+        Audio{
+            id: playMusic
+            source: "../germanbook/hungerkunstler/sound1.wav"
+        }
+        MouseArea {
+            id: playArea
+            anchors.fill: parent
+            onPressed:  { playMusic.play();
+            console.log("mousearea");
+            console.log(playMusic.duration);}
+        }
 }
 }

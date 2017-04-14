@@ -70,9 +70,15 @@ Window {
         MouseArea {
             id: playArea
             anchors.fill: parent
-            onPressed:  { playMusic.play();
-            console.log("mousearea");
-            console.log(playMusic.duration);}
+            onPressed:
+            {
+                console.log(playMusic.playbackState);
+                if(playMusic.playbackState==1)
+                    playMusic.pause();
+                else
+                    playMusic.play()
+                console.log("mousearea");
+            }
         }
 }
 }

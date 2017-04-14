@@ -3,55 +3,6 @@ import QtQuick.Window 2.2
 import QtQuick 2.5
 import QtMultimedia 5.6
 
-/*Item {
-    width: 1024
-    height: 600
-
-    MediaPlayer {
-        id: player
-        source: "trailer_400p.ogg"
-    }
-
-    VideoOutput {
-        anchors.fill: parent
-        source: player
-    }
-
-    Component.onCompleted: {
-        player.play();
-    }
-}*/
-
-/*Window {
-    visible: true
-    width: 640
-    height: 480
-    title: qsTr("Hello World")
-
-    MainForm {
-        anchors.fill: parent
-        mouseArea.onClicked: {
-            console.log(qsTr('Clicked on background. Text: "' + textEdit.text + '"'))
-        }
-        //some comment
-    }
-}*/
-
-/*Text {
-    text: "Click Me!";
-    font.pointSize: 24;
-    width: 150; height: 50;
-
-    MediaPlayer {
-        id: playMusic
-        source: "../germanbook/hungerkunstler/sound1.mp3"
-    }
-    MouseArea {
-        id: playArea
-        anchors.fill: parent
-        onPressed:  { playMusic.play() }
-    }
-}*/
 Window {
     visible: true
     width: 640
@@ -67,11 +18,12 @@ Window {
             id: playMusic
             source: "hungerkunstler/sound1.mp3"
         }
-        MouseArea {
+        Button{
             id: playArea
             anchors.fill: parent
-            onPressed:
+            onClicked:
             {
+                var times = [100, 500];
                 console.log(playMusic.playbackState);
                 if(playMusic.playbackState==1)
                     playMusic.pause();
@@ -80,5 +32,33 @@ Window {
                 console.log("mousearea");
             }
         }
-}
+    }
+
+    Text {
+        id: timeText
+        x: 10
+        y: 30
+        text: Qt.formatTime(new Date(),"hh:mm:ss")
+    }
+    Text {
+        id: timeText2
+        x: 10
+        y: 50
+        text: Qt.formatTime(new Date(),"hh:mm:ss")
+    }
+
+    Timer {
+        property int phase: 0
+        property var times: [0.5, 100.6, 30.8]
+        id: timer
+        interval: 500
+        repeat: true
+        running: true
+
+        onTriggered:
+        {
+            timeText.text =  playMusic.position / 1000.0;
+            timeText2.text = times[2];
+        }
+    }
 }

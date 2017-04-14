@@ -7,5 +7,7 @@
         <file>hungerkunstler/text1.txt</file>
         <file>hungerkunstler/text2.txt</file>
         <file>main.cpp</file>
+        <file>Button.qml</file>
+        <file>Button.ui.qml</file>
     </qresource>
 </RCC>

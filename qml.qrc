@@ -4,10 +4,8 @@
         <file>MainForm.ui.qml</file>
         <file>hungerkunstler/sound1.mp3</file>
         <file>hungerkunstler/sound2.mp3</file>
-        <file>hungerkunstler/text1.txt</file>
-        <file>hungerkunstler/text2.txt</file>
         <file>main.cpp</file>
-        <file>Button.qml</file>
-        <file>Button.ui.qml</file>
+        <file>hungerkunstler/text1.html</file>
+        <file>hungerkunstler/text2.html</file>
     </qresource>
 </RCC>

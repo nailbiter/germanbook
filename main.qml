@@ -25,14 +25,8 @@ Button{
     anchors.topMargin: 387
     onClicked:
     {
+        webView.runJavaScript("cb(3)", function(result) { console.log(result); });
         playMusic.play()
-        /*var times = [100, 500];
-        console.log(playMusic.playbackState);
-        if(playMusic.playbackState==1)
-        playMusic.pause();
-        else
-        playMusic.play()
-        console.log("mousearea");*/
     }
 }
 

@@ -23,11 +23,41 @@ Button{
     anchors.bottomMargin: 25
     anchors.leftMargin: 190
     anchors.topMargin: 387
+    property bool isOnStart: true;
+    property double startTime: 0;
     onClicked:
     {
-        webView.runJavaScript("cb(3)", function(result) { console.log(result); });
-        playMusic.play()
+        if(isOnStart)
+        {
+            isOnStart = false;
+            console.log("seekable="+playMusic.seekable);
+            timer.phase++;
+            webView.runJavaScript("cb(\""+ timer.phase + "\")", function(result) {
+                if(String(result).localeCompare("eof") != 0)
+                    timer.stopTime = textToTime(result);
+                else
+                {
+                    //FIXME: "initialize" function
+                    playMusic.stop();
+                    timer.phase = 0;
+                    timer.stopTime = -1.0;
+                }
+            });
+            playMusic.play()
+        }
+        else
+        {
+            if(playMusic.playbackState==1)
+                playMusic.pause();
+            else
+                playMusic.play()
+        }
     }
+}
+function textToTime(text)
+{
+    console.log("textToTime: text="+text);
+    return Number(text);
 }
 
     WebEngineView {
@@ -40,11 +70,21 @@ Button{
         id: webView
         anchors.fill: parent
         url: "hungerkunstler/text1.html"
+        /*javaScriptConsoleMessage:
+        {
+
+        }*/
+
+        onLoadingChanged:
+        {
+            if(loading==false)
+                webView.runJavaScript("startTime()", function(result) { playMusic.seek(1000*textToTime(result)); });
+        }
     }
 
     Timer{
         property int phase: 0
-        property var times: [5.8, 10.6]
+        property double stopTime: -1.0;
         id: timer
         interval: 50
         repeat: true
@@ -52,12 +92,12 @@ Button{
 
         onTriggered:
         {
-            myButton.text =  (playMusic.position / 1000.0) + "/" + times[phase] + "/" + (playMusic.duration / 1000.0);
+            myButton.text =  (playMusic.position / 1000.0) + "/" + stopTime+"("+phase+")"+ "/" + (playMusic.duration / 1000.0);
 
-            if( playMusic.position/1000.0 >= times[phase])
+            if( stopTime>0 && playMusic.position/1000.0 >= stopTime)
             {
                 playMusic.pause();
-                phase++;
+                myButton.isOnStart = true;
             }
 
         }

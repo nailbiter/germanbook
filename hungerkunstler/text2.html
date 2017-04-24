@@ -1,1 +1,129 @@
-text2_proto.html
+<html>
+<script type="text/javascript">
+var dataendon = "data-endon";
+var endsymbol = "eof"
+
+function startTime(){ return "04.4"; }
+function lastId(){ return "24"; }
+function cleanAllHighlights()
+{
+	var spans = document.getElementsByTagName("span");
+	console.warn("cleanAllHighlights: "+spans.length);
+	var count = 0;
+	for ( var i = 0; i < spans.length; i++)
+		if(spans[i].getAttribute(dataendon)!=null)
+		{
+			count++;
+			spans[i].style.background = "";
+		}
+	console.warn(count);
+}
+function cb(x)
+{
+	cleanAllHighlights();
+	var elem = document.getElementById(x);
+	if(elem==null)
+		return endsymbol;
+
+	elem.style.background = "yellow";
+	return elem.getAttribute(dataendon);
+}
+</script>
+<p>
+<span id="1" data-endon="9.3">
+In den letzten Jahrzehnten ist das Interesse an Hungerkunstlern sehr zuruckgegangen.
+</span>
+<span id="2" data-endon="15.7">
+Wahrend es sich fruher gut lohnte, grose derartige Vorfuhrungen in eigener Regie zu veranstalten,
+</span>
+<span id="3" data-endon="17.9">
+ist dies heute vollig unmoglich.
+</span>
+<span id="4" data-endon="20.3">
+Es waren andere Zeiten.
+</span>
+<span id="5" data-endon="24.0">
+Damals beschaftigte sich die ganze Stadt mit dem Hungerkunstler;
+</span>
+<span id="6" data-endon="27.7">
+von Hungertag zu Hungertag stieg die Teilnahme;
+</span>
+<span id="7" data-endon="31.5">
+jeder wollte den Hungerkunstler
+zumindest einmal taglich sehn;
+</span>
+<span id="8" data-endon="38.3">
+an den spatern Tagen gab es Abonnenten,
+welche
+tagelang vor dem kleinen Gitterkafig sasen;
+</span>
+<span id="9" data-endon="41.1">
+auch in der Nacht fanden
+Besichtigungen statt,
+</span>
+<span id="10" data-endon="44.4">
+zur Erhohung der Wirkung bei Fackelschein;
+</span>
+<span id="11" data-endon="53.4">
+an schonen
+Tagen wurde der Kafig ins Freie getragen,
+und nun waren es besonders die
+Kinder,
+denen der Hungerkunstler gezeigt wurde;
+</span>
+<span id="12" data-endon="60.6">
+wahrend er fur die Erwachsenen
+oft nur ein Spas war,
+an dem sie der Mode halber teilnahmen, 
+</span>
+<span id="13" data-endon="64.5">
+sahen die Kinder
+staunend,
+mit offenem Mund,
+</span>
+<span id="14" data-endon="67.1">
+der Sicherheit halber einander bei der Hand
+haltend,
+</span>
+<span id="15" data-endon="73.3">
+zu, wie er bleich, im schwarzen Trikot, mit machtig vortretenden
+Rippen, 
+</span>
+<span id="16" data-endon="78.1">
+sogar einen Sessel verschmahend,
+auf hingestreutem Stroh sas,
+</span>
+<span id="17" data-endon="80.6">
+einmal
+hoflich nickend,
+</span>
+<span id="18" data-endon="84.0">
+angestrengt lachelnd Fragen beantwortete,
+</span>
+<span id="19" data-endon="89.0">
+auch durch das
+Gitter den Arm streckte, um seine Magerkeit befuhlen zu lassen,
+</span>
+<span id="20" data-endon="92.2">
+dann aber
+wieder ganz in sich selbst versank,
+</span>
+<span id="21" data-endon="94.6">
+um niemanden sich kummerte,
+</span>
+<span id="22" data-endon="101.1">
+nicht einmal um
+den fur ihn so wichtigen Schlag der Uhr,
+die das einzige Mobelstuck des Kafigs
+war,
+</span>
+<span id="23" data-endon="106.7">
+sondern nur vor sich hinsah 
+mit fast geschlossenen Augen
+</span>
+<span id="24" data-endon="114.0">
+und hie und da aus einem winzigen Glaschen Wasser nippte, 
+um sich die Lippen zu feuchten.
+</span>
+</p>
+</html>

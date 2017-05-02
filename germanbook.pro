@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += qml quick multimedia #webkit webkitwidgets
+QT += qml quick multimedia webengine #webkit webkitwidgets
 CONFIG += c++11
 
 SOURCES += main.cpp

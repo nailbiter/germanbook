@@ -2,11 +2,12 @@
 #include <QQmlApplicationEngine>
 #include <QDir>
 #include <iostream>
-#include <QMediaPlayer>
+#include <QtWebEngine/QtWebEngine>
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+    QtWebEngine::initialize();
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
@@ -24,14 +25,14 @@ int main(int argc, char *argv[])
         std::cout << std::endl;
     }
 
-    if(!true)
+    /*if(!true)
     {
         std::cout << "tesime"<<std::endl;
         QMediaPlayer* player = new QMediaPlayer;
         player->setMedia(QUrl("qrc:/hungerkunstler/sound1.mp3"));
         player->setVolume(50);
         player->play();
-    }
+    }*/
 
     return app.exec();
 }

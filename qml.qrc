@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
         <file>main.cpp</file>
+        <file>Karaoke.qml</file>
     </qresource>
 </RCC>

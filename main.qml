@@ -15,11 +15,12 @@ Window {
     /* global properties */
     property int whichOne: 0;
     property int howMany: 2;
+    property string stem : ""
 
     /* global functions*/
-    Component.onCompleted:{
-        console.log("window completed")
-        var flag = 2;
+    Component.onCompleted:
+    {
+        var flag = 1;
         /*
           0 = dialog,
           1 = mac,
@@ -27,8 +28,12 @@ Window {
           */
         switch(flag)
         {
+        case 1:
+            stem = "file:///Users/nailbiter/forqt/germanbook/hungerkunstler/";
+            setup();
+            break;
         case 2:
-            fileDialog.stem = "file:///C:/Users/AJP/Documents/germanbook/hungerkunstler/";
+            stem = "file:///C:/Users/AJP/Documents/germanbook/hungerkunstler/";
             setup();
             break;
         default:
@@ -36,24 +41,16 @@ Window {
             break;
         }
     }
-    function textToTime(text)
-    {
-        console.log("textToTime: text="+text);
-        return Number(text);
-    }
     function setup()
     {
-        webView1.url = fileDialog.stem + "text1.html";
-        webView2.url = fileDialog.stem + "text2.html";
-
-        playMusic1.source = fileDialog.stem + "sound1.mp3";
-        playMusic2.source = fileDialog.stem + "sound2.mp3";
+        whichOne = 0;
+        view1.setup(stem + "text1.html", stem + "sound1.mp3",0);
+        view2.setup(stem + "text2.html", stem + "sound2.mp3",1);
         timer.canStart = true;
     }
 
     FileDialog {
         id: fileDialog
-        property string stem : ""
         title: "Please choose a file"
         folder: shortcuts.home
         onAccepted: {
@@ -64,91 +61,23 @@ Window {
             stem += "/";
             console.log("stem: "+stem);
             setup();
-            //Qt.quit()
         }
         onRejected: {
             console.log("Canceled")
             Qt.quit()
         }
     }
-    Audio{
-        id: playMusic1
-        source: "hungerkunstler/sound1.mp3"
-    }
-    Audio{
-        id: playMusic2
-        source: "hungerkunstler/sound1.mp3"
-    }
 Column{
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.verticalCenter: parent.verticalCenter
     spacing: 5
-    WebEngineView {
-        property double stopTime: -1.0;
-        width: 640
-        property int phase: 0
-        height: 200
-        id: webView1
-        url: "hungerkunstler/text1.html"
-        onLoadingChanged:
-        {
-            if(loading==false && timer.canStart)
-                this.runJavaScript("startTime()", function(result) { playMusic1.seek(1000*textToTime(result)); });
-        }
-        function nextPhase()
-        {
-            /*
-            myButton.text =  (playMusic.position / 1000.0) + "/" + stopTime+"("+phase+")"+ "/" + (playMusic.duration / 1000.0);
-
-            if( stopTime>0 && playMusic.position/1000.0 >= stopTime)
-            {
-                playMusic.pause();
-                myButton.isOnStart = true;
-            }
-              */
-        }
-        function buttonClick()
-        {
-            //TODO
-        }
-        function update()
-        {
-            //TODO
-        }
+    Karaoke{
+        id: view1
     }
-    WebEngineView {
-        property double stopTime: -1.0;
-        property int phase: 0
-        width: 640
-        height: 200
-        id: webView2
-        url: "hungerkunstler/text1.html"
-        onLoadingChanged:
-        {
-            if(loading==false && timer.canStart)
-                this.runJavaScript("startTime()", function(result) { playMusic2.seek(1000*textToTime(result)); });
-        }
-        function nextPhase()
-        {
-            /*
-            myButton.text =  (playMusic.position / 1000.0) + "/" + stopTime+"("+phase+")"+ "/" + (playMusic.duration / 1000.0);
-
-            if( stopTime>0 && playMusic.position/1000.0 >= stopTime)
-            {
-                playMusic.pause();
-                myButton.isOnStart = true;
-            }
-              */
-        }
-        function buttonClick()
-        {
-            //TODO
-        }
-        function update()
-        {
-            //TODO
-        }
+    Karaoke{
+        id: view2
     }
+
     Button{
         id: myButton
         text: "Click Me!"
@@ -160,13 +89,18 @@ Column{
             switch(whichOne)
             {
             case 0:
-                webView1.buttonClick();
+                if(view1.getPlaybackState()==1)
+                    view1.pause();
+                else
+                    view1.play();
                 break;
             case 1:
-                webView2.buttonClick();
+                if(view2.getPlaybackState()==1)
+                    view2.pause();
+                else
+                    view2.play();
                 break;
             }
-
             /*if(isOnStart)
             {
                 isOnStart = false;
@@ -205,8 +139,18 @@ Column{
         onTriggered:
         {
             if(!canStart) return;
-            webView1.update();
-            webView2.update();
+            var transitionRequest;
+            switch(whichOne)
+            {
+            case 0:
+                transitionRequest = view1.update(whichOne);
+                break;
+            case 1:
+                transitionRequest = view2.update(whichOne);
+                break;
+            }
+            if(transitionRequest)
+                whichOne = (whichOne+1) % howMany;
             /*
             switch(whichOne)
             {

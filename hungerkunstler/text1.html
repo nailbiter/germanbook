@@ -1,33 +1,8 @@
 <html>
+<script type="text/javascript" src="script.js"></script>
 <script type="text/javascript">
-var dataendon = "data-endon";
-var endsymbol = "eof"
-
 function startTime(){ return "12.5"; }
-function lastId(){ return "24"; }
-function cleanAllHighlights()
-{
-	var spans = document.getElementsByTagName("span");
-	console.warn("cleanAllHighlights: "+spans.length);
-	var count = 0;
-	for ( var i = 0; i < spans.length; i++)
-		if(spans[i].getAttribute(dataendon)!=null)
-		{
-			count++;
-			spans[i].style.background = "";
-		}
-	console.warn(count);
-}
-function cb(x)
-{
-	cleanAllHighlights();
-	var elem = document.getElementById(x);
-	if(elem==null)
-		return endsymbol;
-
-	elem.style.background = "yellow";
-	return elem.getAttribute(dataendon);
-}
+function numOfIds(){ return "24"; }
 </script>
 <p>
 <span id="1" data-endon="19.6">

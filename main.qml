@@ -107,6 +107,14 @@ Column{
             }
               */
         }
+        function buttonClick()
+        {
+            //TODO
+        }
+        function update()
+        {
+            //TODO
+        }
     }
     WebEngineView {
         property double stopTime: -1.0;

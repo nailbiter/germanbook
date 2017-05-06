@@ -16,6 +16,7 @@ function cb(x)
 {
 	cleanAllHighlights();
 	var elem = document.getElementById(x);
+    elem.scrollIntoView(true);
 	if(elem==null)
 		return endsymbol;
 

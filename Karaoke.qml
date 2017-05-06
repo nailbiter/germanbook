@@ -38,6 +38,7 @@ Rectangle {
                 });
             }
         }
+        Keys.priority: Keys.BeforeItem
     }
     /*
     myButton.text =  (playMusic.position / 1000.0) + "/" + stopTime+"("+phase+")"+ "/" + (playMusic.duration / 1000.0);
@@ -107,5 +108,8 @@ Rectangle {
     }
     function getPlaybackState(){return playMusic.playbackState; }
     function play(){ playMusic.play(); }
-    function pause(){ playMusic.pause(); }
+    function pause()
+    {
+        playMusic.pause();
+    }
 }

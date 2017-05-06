@@ -18,6 +18,12 @@ Window {
     property string stem : ""
 
     /* global functions*/
+    Action {
+        shortcut: "Space"
+        onTriggered: {
+            buttonClick();
+        }
+    }
     Component.onCompleted:
     {
         var flag = 1;
@@ -41,51 +47,8 @@ Window {
             break;
         }
     }
-    function setup()
+    function buttonClick()
     {
-        whichOne = 0;
-        view1.setup(stem + "text1.html", stem + "sound1.mp3",0);
-        view2.setup(stem + "text2.html", stem + "sound2.mp3",1);
-        timer.canStart = true;
-    }
-
-    FileDialog {
-        id: fileDialog
-        title: "Please choose a file"
-        folder: shortcuts.home
-        onAccepted: {
-            console.log("You chose: " + fileDialog.fileUrls)
-            var s = fileDialog.fileUrl.toString();
-            console.log("res: "+s);
-            stem = s.substring(0,s.lastIndexOf('/'))
-            stem += "/";
-            console.log("stem: "+stem);
-            setup();
-        }
-        onRejected: {
-            console.log("Canceled")
-            Qt.quit()
-        }
-    }
-Column{
-    anchors.horizontalCenter: parent.horizontalCenter
-    anchors.verticalCenter: parent.verticalCenter
-    spacing: 5
-    Karaoke{
-        id: view1
-    }
-    Karaoke{
-        id: view2
-    }
-
-    Button{
-        id: myButton
-        text: "Click Me!"
-        anchors.horizontalCenter: parent.horizontalCenter
-        property bool isOnStart: true;
-        property double startTime: 0
-        onClicked:
-        {
             switch(whichOne)
             {
             case 0:
@@ -126,7 +89,52 @@ Column{
                 else
                     playMusic.play()
             }*/
+    }
+
+    function setup()
+    {
+        whichOne = 0;
+        view1.setup(stem + "text1.html", stem + "sound1.mp3",0);
+        view2.setup(stem + "text2.html", stem + "sound2.mp3",1);
+        timer.canStart = true;
+    }
+
+    FileDialog {
+        id: fileDialog
+        title: "Please choose a file"
+        folder: shortcuts.home
+        onAccepted: {
+            console.log("You chose: " + fileDialog.fileUrls)
+            var s = fileDialog.fileUrl.toString();
+            console.log("res: "+s);
+            stem = s.substring(0,s.lastIndexOf('/'))
+            stem += "/";
+            console.log("stem: "+stem);
+            setup();
         }
+        onRejected: {
+            console.log("Canceled")
+            Qt.quit()
+        }
+    }
+Column{
+    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.verticalCenter: parent.verticalCenter
+    spacing: 5
+    Karaoke{
+        id: view1
+    }
+    Karaoke{
+        id: view2
+    }
+
+    Button{
+        id: myButton
+        text: "pause/play"
+        anchors.horizontalCenter: parent.horizontalCenter
+        property bool isOnStart: true;
+        property double startTime: 0
+        onClicked: buttonClick()
     }
 }
     Timer{

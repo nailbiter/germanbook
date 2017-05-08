@@ -1,5 +1,15 @@
 var dataendon = "data-endon";
 var endsymbol = "eof"
+function numOfIds(){ 
+	var spans = document.getElementsByTagName("span");
+	var maxId = 0;
+	for ( var i = 0; i < spans.length; i++)
+		if(spans[i].getAttribute(dataendon)!=null)
+		{
+			maxId = Math.max(maxId,Number(spans[i].id))
+		}
+	return maxId;
+}
 function cleanAllHighlights()
 {
 	var spans = document.getElementsByTagName("span");

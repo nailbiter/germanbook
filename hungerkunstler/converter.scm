@@ -26,7 +26,6 @@
                               (lambda(s buf)(format #f "<span id=\"~a\" data-endon=\"~a\">~a</span>" (begin(inc-var counter)(variable-ref counter))
                                                     (min2sec (match:substring (string-match "^([0-9].*)$" s) 1))(string-concatenate(map(lambda(s)(format #f "~a~%" s)) buf))))
                               ))
-       (rawlist (append rawlist (list(format #f "<script type=\"text/javascript\">function numOfIds(){ return \"~a\"; }</script>" (variable-ref counter)) )))
          ;(lambda(l crit func))
        (res(lambda()(map (lambda(line)(format #t "~a~%" line))rawlist)))
        )(res))
